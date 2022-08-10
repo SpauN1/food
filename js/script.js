@@ -261,14 +261,16 @@ window.addEventListener('DOMContentLoaded', function () {
 				},
 				body: JSON.stringify(object)
 			})
-			.then(data => data.text())
+			.then((data) => data.text())
 			.then((data) => {
 				console.log(data);
 				showThanksModal(message.success);
 				statusMessage.remove();
-			}).catch(() => {
+			})
+			.catch(() => {
 				showThanksModal(message.failure);
-			}).finally(() => {
+			})
+			.finally(() => {
 				form.reset();
 			});
 		});
@@ -296,4 +298,8 @@ window.addEventListener('DOMContentLoaded', function () {
 			closeModal();
 		}, 4000);
 	}
+
+	this.fetch('http://localhost:3000/menu')
+		.then((data) => data.json())
+		.then((res) => console.log(res));
 });
