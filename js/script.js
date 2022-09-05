@@ -326,19 +326,6 @@ window.addEventListener('DOMContentLoaded', function () {
 	const sliderDots = document.createElement('ol');
 	const dots = [];
 
-	function currentSlide() {
-		if (slides.length < 10) {
-			sliderCurrentCounter.textContent = `0${slideIndex}`;
-		} else {
-			sliderCurrentCounter.textContent = slideIndex;
-		}
-	}
-
-	function dotsOpacity() {
-		dots.forEach((dot) => dot.style.opacity = '.5');
-		dots[slideIndex - 1].style.opacity = 1;
-	}
-
 	sliderDots.classList.add('carousel-indicators');
 	sliderDots.style.cssText = `
 		position: absolute;
@@ -379,11 +366,28 @@ window.addEventListener('DOMContentLoaded', function () {
 		dots.push(dot);
 	}
 
+	function deleteNotDigits(str) {
+		return +str.replace(/\D/g, '');
+	}
+	
+	function currentNumberSlide() {
+		if (slides.length < 10) {
+			sliderCurrentCounter.textContent = `0${slideIndex}`;
+		} else {
+			sliderCurrentCounter.textContent = slideIndex;
+		}
+	}
+
+	function dotsOpacity() {
+		dots.forEach((dot) => dot.style.opacity = '.5');
+		dots[slideIndex - 1].style.opacity = 1;
+	}
+
 	sliderBtnNext.addEventListener('click', () => {
-		if (offset == +sliderWidth.slice(0, sliderWidth.length - 2) * (slides.length - 1)) {
+		if (offset == deleteNotDigits(sliderWidth) * (slides.length - 1)) {
 			offset = 0;
 		} else {
-			offset += +sliderWidth.slice(0, sliderWidth.length - 2);
+			offset += deleteNotDigits(sliderWidth);
 		}
 
 		sliderField.style.transform = `translateX(-${offset}px)`;
@@ -394,16 +398,16 @@ window.addEventListener('DOMContentLoaded', function () {
 			slideIndex++;
 		}
 
-		currentSlide();
+		currentNumberSlide();
 
 		dotsOpacity();
 	});
 
 	sliderBtnPrev.addEventListener('click', () => {
 		if (offset == 0) {
-			offset = +sliderWidth.slice(0, sliderWidth.length - 2) * (slides.length - 1);
+			offset = deleteNotDigits(sliderWidth) * (slides.length - 1);
 		} else {
-			offset -= +sliderWidth.slice(0, sliderWidth.length - 2);
+			offset -= deleteNotDigits(sliderWidth);
 		}
 
 		sliderField.style.transform = `translateX(-${offset}px)`;
@@ -414,7 +418,7 @@ window.addEventListener('DOMContentLoaded', function () {
 			slideIndex--;
 		}
 
-		currentSlide();
+		currentNumberSlide();
 
 		dotsOpacity();
 	});
@@ -424,11 +428,11 @@ window.addEventListener('DOMContentLoaded', function () {
 			const slideTo = event.target.getAttribute('data-slide-to');
 
 			slideIndex = slideTo;
-			offset = +sliderWidth.slice(0, sliderWidth.length - 2) * (slideTo - 1);
+			offset = deleteNotDigits(sliderWidth) * (slideTo - 1);
 
 			sliderField.style.transform = `translateX(-${offset}px)`;
 
-			currentSlide();
+			currentNumberSlide();
 
 			dotsOpacity();
 		});
