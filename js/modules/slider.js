@@ -1,6 +1,4 @@
 function slider() {
-	// Slider
-
 	const slides = document.querySelectorAll('.offer__slide'),
 			slider = document.querySelector('.offer__slider'),
 			sliderBtnPrev  = document.querySelector('.offer__slider-prev'),

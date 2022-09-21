@@ -1,6 +1,4 @@
 function timer() {
-	// Timer
-
 	const deadline = '2023-02-08';
 
 	function getTimeRemaining(endtime) {
