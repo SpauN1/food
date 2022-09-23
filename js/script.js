@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	const modalTimerId = setTimeout(() => openModal('.modal', modalTimerId), 60000);
 
-	tabs();
+	tabs('.tabheader__item', '.tabcontent', '.tabheader__items', 'tabheader__item_active');
 	modal('[data-modal]', '.modal', modalTimerId);
 	timer();
 	cards();
