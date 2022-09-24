@@ -358,15 +358,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-function slider() {
-	const slides = document.querySelectorAll('.offer__slide'),
-			slider = document.querySelector('.offer__slider'),
-			sliderBtnPrev  = document.querySelector('.offer__slider-prev'),
-			sliderBtnNext  = document.querySelector('.offer__slider-next'),
-			sliderTotalCounter  = document.querySelector('#total'),
-			sliderCurrentCounter  = document.querySelector('#current'),
-			sliderWrapper = document.querySelector('.offer__slider-wrapper'),
-			sliderField = document.querySelector('.offer__slider-inner'),
+function slider({container, slide, nextArrow, prevArrow, totalCounter, currentCounter, wrapper, field}) {
+	const slides = document.querySelectorAll(slide),
+			slider = document.querySelector(container),
+			sliderBtnPrev = document.querySelector(prevArrow),
+			sliderBtnNext = document.querySelector(nextArrow),
+			sliderTotalCounter = document.querySelector(totalCounter),
+			sliderCurrentCounter = document.querySelector(currentCounter),
+			sliderWrapper = document.querySelector(wrapper),
+			sliderField = document.querySelector(field),
 			sliderWidth = window.getComputedStyle(sliderWrapper).width;
 
 	let slideIndex = 1;
@@ -772,7 +772,16 @@ window.addEventListener('DOMContentLoaded', () => {
 	(0,_modules_cards__WEBPACK_IMPORTED_MODULE_3__["default"])();
 	(0,_modules_calc__WEBPACK_IMPORTED_MODULE_4__["default"])();
 	(0,_modules_forms__WEBPACK_IMPORTED_MODULE_5__["default"])('form', modalTimerId);
-	(0,_modules_slider__WEBPACK_IMPORTED_MODULE_6__["default"])();
+	(0,_modules_slider__WEBPACK_IMPORTED_MODULE_6__["default"])({
+		container: '.offer__slider',
+		slide: '.offer__slide',
+		nextArrow: '.offer__slider-next',
+		prevArrow: '.offer__slider-prev',
+		totalCounter: '#total',
+		currentCounter: '#current',
+		wrapper: '.offer__slider-wrapper',
+		field: '.offer__slider-inner',
+	});
 });
 
 })();
