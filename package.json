@@ -16,9 +16,20 @@
 		"url": "https://github.com/SpauN1/food/issues"
 	},
 	"homepage": "https://github.com/SpauN1/food#readme",
+	"browserslist": [
+		"> 1%"
+	],
 	"devDependencies": {
+		"@babel/cli": "^7.18.10",
+		"@babel/core": "^7.19.1",
+		"@babel/preset-env": "^7.19.1",
+		"babel-loader": "^8.2.5",
+		"core-js": "^3.25.2",
 		"json-server": "^0.17.0",
 		"webpack": "^5.74.0",
 		"webpack-cli": "^4.10.0"
+	},
+	"dependencies": {
+		"@babel/polyfill": "^7.12.1"
 	}
 }
